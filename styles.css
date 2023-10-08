@@ -1,0 +1,86 @@
+:root {
+    --lightgreen: #606C38;
+    --darkgreen: #283618;
+    --whiteish: #FEFAE0;
+    --lightorange: #DDA15E;
+    --darkorange: #BC6C25;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--whiteish);
+}
+
+.modal {
+    
+    height: 40vh;
+    aspect-ratio: 1;
+    background: var(--darkgreen);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 7px;
+    color: var(--whiteish);
+}
+
+.addbtn {
+    
+    background-color: var(--whiteish);
+    border-radius: 7px;
+    margin: 0;
+    padding: 5px;
+    color: var(--darkorange);
+    font-weight: bold;
+    text-align: center;
+    width: 50%;
+
+
+}
+
+.modal input[type="text"] {
+    background-color: #FEFAE0;
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    color: var(--darkgreen);
+    border: none;
+    outline: none;
+
+}
+
+.modal input[type="text"]:focus {
+    outline: solid 2px var(--darkorange);
+    color: var(--darkgreen);
+
+}
+
+label, input {
+    margin-bottom: 5px;
+
+}
+
+.modal form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 20px;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    accent-color: var(--darkorange);
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+    border: none;
+}

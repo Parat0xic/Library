@@ -12,8 +12,14 @@ Book.prototype.info = function() {
 }
 
 function addBookToLibrary() {
-    
+
 }
+
+const addButton = document.querySelector(".addbtn");
+
+addButton.addEventListener("click", function(e) {
+    
+});
 
 
 
