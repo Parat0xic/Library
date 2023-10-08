@@ -42,7 +42,7 @@ body {
     font-weight: bold;
     text-align: center;
     width: 50%;
-
+    user-select: none;
 
 }
 
@@ -83,4 +83,8 @@ input[type="checkbox"] {
 input[type="checkbox"]:focus {
     outline: none;
     border: none;
+}
+
+.cardContainer {
+    background-color: blue;
 }
