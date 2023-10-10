@@ -15,6 +15,10 @@ body {
     background-color: var(--whiteish);
 }
 
+.container {
+    min-height: 100vh;
+}
+
 .modal {
     
     height: 40vh;
@@ -30,6 +34,7 @@ body {
     transform: translate(-50%, -50%);
     border-radius: 7px;
     color: var(--whiteish);
+    flex-direction: column;
 }
 
 .addbtn {
@@ -43,7 +48,33 @@ body {
     text-align: center;
     width: 50%;
     user-select: none;
+    border: none;
+    outline: none;
+}
 
+.addbtn:active {
+    transform: translateY(3px);
+}
+
+.closebtn {
+    justify-self: end;
+    align-self: end;
+    background-color: var(--whiteish);
+    border-radius: 7px;
+    margin: 0;
+    padding: 5px;
+    color: var(--darkorange);
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    user-select: none;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+}
+
+.closebtn:active {
+    transform: translateY(3px);
 }
 
 .modal input[type="text"] {
@@ -86,5 +117,73 @@ input[type="checkbox"]:focus {
 }
 
 .cardContainer {
-    background-color: blue;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    padding: 100px;
+    gap: 15px;
+}
+
+.bookcard {
+    display: grid;
+    background: var(--lightgreen);
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    padding-top: 30px;
+    box-shadow: 1px 2px 15px black;;
+}
+
+.openmodal {
+    font-size: 25px;
+    display: flex;
+    width: 150px;
+    background: var(--darkorange);
+    padding: 5px;
+    border-radius: 10px;
+    color: var(--whiteish);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
+
+.openmodal:active {
+    transform: translateY(3px);
+}
+
+.remove {
+    background-color: var(--darkorange);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.toggleRead {
+    width: 25%;
+    place-self: center;
+    height: 25px;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: var(--whiteish);
+    background-color: var(--darkgreen);
+}
+
+.read {
+    background-color: var(--lightgreen);
+}
+
+.unread {
+    background-color: var(--lightorange);
+}
+
+.hidden {
+    display: none;
 }

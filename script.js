@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function() {
         this.read = read;
     }
     
+    Book.prototype.toggleRead = function() {
+        this.read = !this.read;
+    }
+
     Book.prototype.info = function() {
         return `${this.title}, ${this.author}, ${this.pages}, ${this.read}`; 
     }
@@ -25,19 +29,45 @@ document.addEventListener("DOMContentLoaded", function() {
         myLibrary.push(newBook)
         displayBooks();
     }
+
+    function removeBook(index) {
+        myLibrary.splice(index, 1);
+        displayBooks();
+    }
     
-    const addButton = document.querySelector(".addbtn");
-    addButton.addEventListener("click", function(e) {
+    const addButton = document.querySelector("#addbook");
+    addButton.addEventListener("submit", function(e) {
+        e.preventDefault();
         console.log("ButtonClicked");
         addBookToLibrary();
+        form.reset();
     });
+
+    const openmodalbtn = document.querySelector(".openmodal");
+    const modal = document.querySelector(".modal");
+    const closebtn = document.querySelector(".closebtn");
+
+    function openModal() {
+        modal.classList.remove("hidden");
+    }
+
+    function closeModal() {
+        modal.classList.add("hidden");
+    }
+
+    openmodalbtn.addEventListener("click", openModal);
+    closebtn.addEventListener("click", closeModal);
+
     
     
     function displayBooks() {
+        const cardContainer = document.querySelector(".cardContainer");
+        cardContainer.innerHTML = "";
         for (let i = 0; i < myLibrary.length; i++) {
             const currentBook = myLibrary[i];
             const newDiv = document.createElement("div");
             newDiv.className = "bookcard";
+            newDiv.setAttribute('data-index', i);
             const paragraph1 = document.createElement("p");
             paragraph1.textContent = `Title: ${currentBook.title}`;
             const paragraph2 = document.createElement("p");
@@ -51,10 +81,44 @@ document.addEventListener("DOMContentLoaded", function() {
             else {
                 paragraph4.textContent = "You have not read this book yet!";
             }
+            
+            //Code for the remove button
+            const removeButton = document.createElement("button");
+            removeButton.className = "remove";
+            removeButton.textContent = "Remove";
+            //IIFE otherwise i isn't captured properly
+            removeButton.addEventListener("click", function(index) {
+                return function() {
+                    removeBook(index);
+                }
+            }(i));
+
+            //Code for toggle read button
+            const toggleRead = document.createElement("Div");
+            toggleRead.className = "toggleRead";
+            toggleRead.textContent = "Toggle";
+            if (currentBook.read === true) {
+                newDiv.classList.remove("unread");
+                newDiv.classList.add("read");
+            }
+            else if (currentBook.read === false) {
+                newDiv.classList.remove("read");
+                newDiv.classList.add("unread");
+            }
+            //IIFE otherwise i isn't captured properly
+            toggleRead.addEventListener("click", function(index) {
+                return function() {
+                    myLibrary[index].toggleRead();
+                    displayBooks();
+                };
+            }(i));
+
             newDiv.appendChild(paragraph1);
             newDiv.appendChild(paragraph2);
             newDiv.appendChild(paragraph3);
             newDiv.appendChild(paragraph4);
+            newDiv.appendChild(toggleRead);
+            newDiv.appendChild(removeButton);
             document.querySelector(".cardContainer").appendChild(newDiv);
         }
     }
