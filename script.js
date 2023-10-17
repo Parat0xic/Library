@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     const myLibrary = [];
 
-    function Book(title, author, pages, read) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-    }
-    
-    Book.prototype.toggleRead = function() {
-        this.read = !this.read;
+    class Book {
+        constructor(title, author, pages, read) {
+            this.title = title;
+            this.author = author;
+            this.pages = pages;
+            this.read = read;
+        }
+        toggleRead() {
+            this.read = !this.read;
+        }
+        info() {
+            return `${this.title}, ${this.author}, ${this.pages}, ${this.read}`; 
+        }
     }
 
-    Book.prototype.info = function() {
-        return `${this.title}, ${this.author}, ${this.pages}, ${this.read}`; 
-    }
-    
     function addBookToLibrary() {
         const form = document.querySelector("#addbook");
         const titleInput = form.querySelector("#title").value;
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         const newBook = new Book(titleInput, authorInput, pagesInput, isRead);
         myLibrary.push(newBook)
+        form.reset();
         displayBooks();
     }
 
@@ -38,9 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const addButton = document.querySelector("#addbook");
     addButton.addEventListener("submit", function(e) {
         e.preventDefault();
-        console.log("ButtonClicked");
         addBookToLibrary();
-        form.reset();
     });
 
     const openmodalbtn = document.querySelector(".openmodal");
